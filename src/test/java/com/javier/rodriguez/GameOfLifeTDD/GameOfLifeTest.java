@@ -38,6 +38,14 @@ public class GameOfLifeTest
 		assertFalse(result);
 	}
 	
+	@Test
+	public void itShouldDeadIfTwooOrThreeNeighbors()
+	{
+		GameOfLife gameOfLife = new GameOfLife();
+		boolean result = gameOfLife.getNextStatus(true,2);
+		assertTrue(result);
+	}
+	
 	
 }
 
