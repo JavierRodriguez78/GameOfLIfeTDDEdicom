@@ -125,7 +125,7 @@ public class GameOfLifeTest
 		gameOfLife.setWorld(world);
 		gameOfLife.getNextGeneration();
 		
-		assertEquals(expectedWorld, gameOfLife.getWorld());
+		assertArrayEquals(expectedWorld, gameOfLife.getWorld());
 
 //Passado		
 //		[0,0,0,0]

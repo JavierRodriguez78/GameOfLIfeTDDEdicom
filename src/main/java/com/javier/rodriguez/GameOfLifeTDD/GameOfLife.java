@@ -1,5 +1,7 @@
 package com.javier.rodriguez.GameOfLifeTDD;
 
+import java.util.Arrays;
+
 public class GameOfLife {
 
 	private static final int OVERPOPULATION_THRESHOLD = 3;
@@ -11,6 +13,7 @@ public class GameOfLife {
 	{
 		if (neighbors<UNDERPOPULATION_THRESHOLD) return false;
 		if  (neighbors>OVERPOPULATION_THRESHOLD) return false;
+		if (neighbors==2 && status == false) return false;
 		return true;
 	}
 	
@@ -38,32 +41,30 @@ public class GameOfLife {
                 if ((x != posX ||  y != posY) && world[x][y] == 1)  alive++;
             }
         }
-		
-		
-//		for(int x=posX-1; x<=posX+1; x++) {
-//			
-//			 
-//			for(int y=posY-1; x>=0  && y<=posY+1; y++) {
-//				
-//				if(x!=posX && y !=posY  && world[x][y]==1)  alive++; 
-//			}
-//			
-//		}
-		
-		
-//		if(world[posX-1][posY-1]==1) alive++;
-//		if(world[posX-1][posY]==1) alive++;
-//		if(world[posX-1][posY+1]==1) alive++;
-//		
-//		if(world[posX][posY-1]==1) alive++;
-//		if(world[posX][posY+1]==1) alive++;
-//		
-//		if(world[posX+1][posY-1]==1) alive++;
-//		if(world[posX+1][posY]==1) alive++;
-//		if(world[posX+1][posY+1]==1) alive++;
-//			
-			
 		return alive;
 	}
+	
+	public void getNextGeneration()
+	{
+		int[][] out = new int[this.world.length][this.world[0].length];
+		
+		int width= this.world.length;
+		int heigth = this.world[0].length;
+		
+		for (int x=0; x<width; x++) {
+			for (int y=0; y<heigth; y++) {
+				
+				int neighbours = this.countAliveNeighbours(x, y);
+				boolean result = this.getNextStatus(world[x][y]==1?true:false, neighbours);
+				out[x][y]=result?1:0;
+				System.out.print(out[x][y]);
+			}
+			System.out.println();
+		}
+		
+		
+		this.world=out;
+	}
+			
 
 }
