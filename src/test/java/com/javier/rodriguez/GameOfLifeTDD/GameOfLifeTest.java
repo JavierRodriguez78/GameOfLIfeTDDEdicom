@@ -3,6 +3,10 @@ package com.javier.rodriguez.GameOfLifeTDD;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
+import com.tngtech.java.junit.dataprovider.DataProvider;
+import com.tngtech.java.junit.dataprovider.DataProviderRunner;
+import com.tngtech.java.junit.dataprovider.UseDataProvider;
+
 import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
@@ -13,7 +17,7 @@ import java.lang.reflect.Array;
  * Unit test for simple App.
  */
 
-
+@RunWith(DataProviderRunner.class)
 public class GameOfLifeTest 
 {
 	@Test
@@ -77,14 +81,38 @@ public class GameOfLifeTest
 		
 	}
 	
+	
+	@DataProvider
+	public static Object[][] dataNumberProviderForWorld(){
+		return new Object[][] {
+			{0,0,1},
+			{0,1,1},
+			{0,2,1},
+			{0,3,0},
+			{1,0,2},
+			{1,1,1},
+			{1,2,3},
+			{1,3,1},
+			{3,0,1},
+			{3,1,1},
+			{3,2,2},
+			{3,3,1}
+		};
+	}
 	@Test
-	public void itShouldGetCountCellAliveNeighbours()
+	@UseDataProvider("dataNumberProviderForWorld")
+	public void itShouldGetCountCellAliveNeighbours(final int x, final int y,final int expected)
 	{
 		int[][] world = {{0,0,0,0},{0,1,0,0},{0,1,0,1},{0,0,0,0}};
 		GameOfLife gameOfLife = new GameOfLife();
 		gameOfLife.setWorld(world);
-		int result = gameOfLife.countAliveNeighbours(1,1);
-		assertEquals(3, result);
+		int result = gameOfLife.countAliveNeighbours(x,y);
+		assertEquals(expected, result);
+//		[0,0,0,0]
+//		[0,1,0,0]
+//		[0,1,0,1]
+//		[0,0,0,0]
+
 	}
 	
 }
