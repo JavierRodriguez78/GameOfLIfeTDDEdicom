@@ -115,5 +115,29 @@ public class GameOfLifeTest
 
 	}
 	
+	@Test
+	public void itShouldCalculateNextGeneration()
+	{
+		int[][] world = {{0,0,0,0},{0,1,0,0},{0,1,0,1},{0,0,0,0}};
+        int[][] expectedWorld = {{0,0,0,0},{0,0,1,0},{0,0,1,0},{0,0,0,0}};
+		
+        GameOfLife gameOfLife = new GameOfLife();
+		gameOfLife.setWorld(world);
+		gameOfLife.getNextGeneration();
+		
+		assertEquals(expectedWorld, gameOfLife.getWorld());
+
+//Passado		
+//		[0,0,0,0]
+//		[0,1,0,0]
+//		[0,1,0,1]
+//		[0,0,0,0]
+//Futuro
+//  			[0,0,0,0]
+//				[0,0,1,0]
+//				[0,0,1,0]
+//				[0,0,0,0]
+	}
+	
 }
 
