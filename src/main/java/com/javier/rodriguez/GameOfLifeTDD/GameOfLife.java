@@ -12,4 +12,9 @@ public class GameOfLife {
 		return true;
 	}
 	
+	public int[][]  initalizeWorld ( int width, int height)
+	{
+		return new int[height][width];
+	}
+	
 }

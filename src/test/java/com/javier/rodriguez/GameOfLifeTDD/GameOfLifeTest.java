@@ -73,10 +73,19 @@ public class GameOfLifeTest
 		int[][] initalizedWorld = gameOfLife.initalizeWorld(2,3);
 		
 		assertArrayEquals(expectedWorld, initalizedWorld);
-		
+	
 		
 	}
 	
+	@Test
+	public void itShouldGetCountCellAliveNeighbours()
+	{
+		int[][] world = {{0,0,0,0},{0,1,0,0},{0,1,0,1},{0,0,0,0}};
+		GameOfLife gameOfLife = new GameOfLife();
+		gameOfLife.setWorld(world);
+		int result = gameOfLife.countAliveNeighbours(1,1);
+		assertEquals(3, result);
+	}
 	
 }
 
