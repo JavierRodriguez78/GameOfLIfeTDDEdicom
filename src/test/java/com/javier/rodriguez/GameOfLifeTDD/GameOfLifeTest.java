@@ -3,9 +3,12 @@ package com.javier.rodriguez.GameOfLifeTDD;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
+import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
+
+import java.lang.reflect.Array;
 /**
  * Unit test for simple App.
  */
@@ -59,6 +62,19 @@ public class GameOfLifeTest
 		GameOfLife gameOfLife = new GameOfLife();
 		boolean result = gameOfLife.getNextStatus(false,3);
 		assertTrue(result);
+	}
+	
+	@Test
+	public void itShoudlInitializeAnEmptyWorld()
+	{
+		GameOfLife gameOfLife= new GameOfLife();
+		int[][] expectedWorld = {{0,0},{0,0},{0,0}};
+		
+		int[][] initalizedWorld = gameOfLife.initalizeWorld(2,3);
+		
+		assertArrayEquals(expectedWorld, initalizedWorld);
+		
+		
 	}
 	
 	
