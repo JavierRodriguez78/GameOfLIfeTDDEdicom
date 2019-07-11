@@ -53,6 +53,13 @@ public class GameOfLifeTest
 		boolean result = gameOfLife.getNextStatus(true,4);
 		assertFalse(result);
 	}
+	@Test
+	public void itShouldLiveIfThreeNeighbors()
+	{
+		GameOfLife gameOfLife = new GameOfLife();
+		boolean result = gameOfLife.getNextStatus(false,3);
+		assertTrue(result);
+	}
 	
 	
 }
